@@ -18,11 +18,13 @@ public class BlogServiceImpl implements BlogService{
 
     @Override
     public Blog getBlog(Long id) {
-        return null;
+        Blog blog = blogRepo.getById(id);
+        return blog;
     }
 
     @Override
     public Blog saveblog(Blog blog) {
+
         return null;
     }
 }
