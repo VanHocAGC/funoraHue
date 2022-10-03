@@ -1,7 +1,10 @@
 package com.example.funovahue.api;
 
+import com.example.funovahue.dto.SaveBlogDTO;
 import com.example.funovahue.entity.Blog;
+import com.example.funovahue.entity.Users;
 import com.example.funovahue.service.BlogService;
+import com.example.funovahue.service.UserService;
 import com.example.funovahue.util.FileUploadUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +21,7 @@ import java.net.URI;
 @RequestMapping("/api")
 public class BlogResource {
     private final BlogService blogservice;
+    private final UserService userService;
 
     @GetMapping("/blog/{id}")
     public ResponseEntity<Blog> getBlogByID(@PathVariable Long id){
@@ -26,8 +30,10 @@ public class BlogResource {
     }
 
     @PostMapping("/blog/save")
-    public ResponseEntity<?> saveBlog(Blog blog, @RequestParam("image") MultipartFile multipartFile) throws IOException {
+    public ResponseEntity<?> saveBlog(SaveBlogDTO blog, @RequestParam("image") MultipartFile multipartFile) throws IOException {
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        Users user =
+        Blog newBlog = new Blog(blog,)
         blog.setPhotos(fileName);
         Blog saveblog = blogservice.saveblog(blog);
         String uploadDir = "blog-photos/" +saveblog.getId();
